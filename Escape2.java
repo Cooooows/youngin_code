@@ -56,11 +56,11 @@ public class Escape2 {
       while(!stack.empty())
       {
          if(r < 0 || c < 0 || r > N || c > M) {
-            break;
+            continue;
          }
          
              k=0;
-             tCnt++;
+             //tCnt++;
              
              r = stack.peek().x;
              c = stack.peek().y;
@@ -71,7 +71,7 @@ public class Escape2 {
              if(r >= 1){//위
                 if(map[r-1][c] == 1 && r-1 >=0){
                    stack.push(new xxy(r-1,c));
-                   map[r-1][c] = map[r][c]+1;
+                   //map[r-1][c] = map[r][c]+1;
                    k++;
                 }
              }
@@ -79,27 +79,31 @@ public class Escape2 {
              if(c >= 1) {//왼
                 if(map[r][c-1] == 1 && c-1 >= 0) {
                    stack.push(new xxy(r,c-1));
-                   map[r][c-1] = map[r][c]+1;
+                  // map[r][c-1] = map[r][c]+1;
                    k++;
                 }
              }
              if(c < M-1 ) {//오른
                 if(map[r][c+1] == 1 && c+1 < M) {
                    stack.push(new xxy(r,c+1));
-                   map[r][c+1] = map[r][c]+1;
+                  // map[r][c+1] = map[r][c]+1;
                    	k++;
                 }
              }
              if(r < N-1) {//아래
                 if(map[r+1][c] == 1 && r+1 < N) {
                    stack.push(new xxy(r+1,c));
-                   map[r+1][c] = map[r][c]+1;
+                   //map[r+1][c] = map[r][c]+1;
                    k++;
                 }
              }
-             if(k == 0)
+             
+             while(!stack.empty()) {
+            	 int a = stack.peek().x;
+            	 int b = stack.peek().y;
+            	 map[a][b] = map[r][c]+ map[a][b]; 
             	 stack.pop();
-
+             }
          }
 
       
